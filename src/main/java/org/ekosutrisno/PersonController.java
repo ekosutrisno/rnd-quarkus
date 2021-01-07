@@ -57,7 +57,6 @@ public class PersonController {
     @POST
     @Tag(name = "RnD Quarkus Development", description = "Added Person")
     public Set<Person> add(Person person) {
-        System.out.println(person.toString());
         personSet.add(person);
         return personSet;
     }
@@ -76,8 +75,6 @@ public class PersonController {
                 -> existingPerson.getUserId()
                 .equals(userId)
         );
-        System.out.println(userId);
-
         return personSet;
     }
 
