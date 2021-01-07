@@ -17,7 +17,7 @@ import java.util.Set;
 @Path("/api/v1")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
-public class GreetingResource {
+public class PersonController {
 
     /**
      * The Person set.
@@ -27,7 +27,7 @@ public class GreetingResource {
     /**
      * Instantiates a new Greeting resource.
      */
-    public GreetingResource() {
+    public PersonController() {
         personSet.addAll(
                 List.of(
                         new Person(1, "Eko Sutrisno", "Pendidikan Matematika", 20),
