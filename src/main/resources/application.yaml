@@ -1,0 +1,16 @@
+quarkus:
+  http:
+    port: 9090
+  smallrye-openapi:
+    path: /swagger
+  swagger-ui:
+    always-include: true
+#  datasource:
+#    db-kind: postgresql
+#    jdbc:
+#      url: jdbc:postgresql://localhost:5432/some-database
+#    username: quarkus
+#    password: quarkusjdbc:mysql://${application.server}:3306/mydatabase?useSSL=false
+
+application:
+  server: localhost
