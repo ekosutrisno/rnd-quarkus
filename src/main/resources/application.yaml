@@ -5,6 +5,7 @@ quarkus:
     path: /swagger
   swagger-ui:
     always-include: true
+    theme: original
 #  datasource:
 #    db-kind: postgresql
 #    jdbc:

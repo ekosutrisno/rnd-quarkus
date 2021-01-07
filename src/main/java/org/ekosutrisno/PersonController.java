@@ -1,32 +1,24 @@
 package org.ekosutrisno;
 
+import org.eclipse.microprofile.openapi.annotations.OpenAPIDefinition;
 import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 import org.ekosutrisno.model.Person;
 
+import javax.transaction.Transactional;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
 import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Set;
 
-/**
- * The type Greeting resource.
- */
 @Path("/api/v1")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public class PersonController {
 
-    /**
-     * The Person set.
-     */
     Set<Person> personSet = Collections.newSetFromMap(Collections.synchronizedMap(new LinkedHashMap<>()));
 
-    /**
-     * Instantiates a new Greeting resource.
-     */
     public PersonController() {
         personSet.addAll(
                 List.of(
@@ -37,36 +29,20 @@ public class PersonController {
         );
     }
 
-    /**
-     * List response.
-     *
-     * @return the response
-     */
     @GET
     @Tag(name = "RnD Quarkus Development", description = "Get All Person")
-    public Response list() {
-        return Response.ok(personSet).build();
+    public Set<Person> list() {
+        return personSet;
     }
 
-    /**
-     * Add set.
-     *
-     * @param person the person
-     * @return the set
-     */
     @POST
     @Tag(name = "RnD Quarkus Development", description = "Added Person")
+    @Transactional
     public Set<Person> add(Person person) {
         personSet.add(person);
         return personSet;
     }
 
-    /**
-     * Delete set.
-     *
-     * @param userId the user id
-     * @return the set
-     */
     @DELETE
     @Tag(name = "RnD Quarkus Development", description = "Delete Person")
     @Path("/{userId}")

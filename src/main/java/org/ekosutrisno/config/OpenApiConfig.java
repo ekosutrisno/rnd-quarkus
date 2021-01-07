@@ -8,12 +8,6 @@ import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 
 import javax.ws.rs.core.Application;
 
-/**
- * The type Open api config.
- *
- * @author Eko Sutrisno
- * @create 13 /11/2020 15:47
- */
 @OpenAPIDefinition(
         tags = {@Tag(name = "RnD Quarkus Development", description = "First API Using Quarkus")},
         info = @Info(
