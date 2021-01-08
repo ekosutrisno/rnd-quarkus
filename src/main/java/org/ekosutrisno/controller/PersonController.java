@@ -1,6 +1,5 @@
-package org.ekosutrisno;
+package org.ekosutrisno.controller;
 
-import org.eclipse.microprofile.openapi.annotations.OpenAPIDefinition;
 import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 import org.ekosutrisno.model.Person;
 
@@ -12,9 +11,10 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Set;
 
-@Path("/api/v1")
+@Path("/api/v1/persons")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
+@Tag(name = "Person Service V1", description = "Handle Persons")
 public class PersonController {
 
     Set<Person> personSet = Collections.newSetFromMap(Collections.synchronizedMap(new LinkedHashMap<>()));
@@ -30,13 +30,20 @@ public class PersonController {
     }
 
     @GET
-    @Tag(name = "RnD Quarkus Development", description = "Get All Person")
     public Set<Person> list() {
         return personSet;
     }
 
+    @GET
+    @Path("/{userId}")
+    public Person list(@PathParam(value = "userId") Integer userId) {
+        return personSet.stream()
+                .filter(person -> person.getUserId().equals(userId))
+                .findFirst()
+                .orElse(new Person());
+    }
+
     @POST
-    @Tag(name = "RnD Quarkus Development", description = "Added Person")
     @Transactional
     public Set<Person> add(Person person) {
         personSet.add(person);
@@ -44,7 +51,6 @@ public class PersonController {
     }
 
     @DELETE
-    @Tag(name = "RnD Quarkus Development", description = "Delete Person")
     @Path("/{userId}")
     public Set<Person> delete(@PathParam("userId") Integer userId) {
         personSet.removeIf(existingPerson

@@ -6,12 +6,18 @@ quarkus:
   swagger-ui:
     always-include: true
     theme: original
-#  datasource:
-#    db-kind: postgresql
-#    jdbc:
-#      url: jdbc:postgresql://localhost:5432/some-database
-#    username: quarkus
-#    password: quarkusjdbc:mysql://${application.server}:3306/mydatabase?useSSL=false
+    display-request-duration: true
+    doc-expansion: none
+    operations-sorter: method
+  datasource:
+    db-kind: postgresql
+    jdbc:
+      url: jdbc:postgresql://localhost:5433/db_quarkus
+    username: postgres
+    password: admin
+  hibernate-orm:
+    database:
+      generation: update
 
 application:
   server: localhost
